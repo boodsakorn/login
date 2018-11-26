@@ -33,11 +33,11 @@ import org.json.JSONObject;
 public class LoginActivity extends Activity {
     private Handler handler = new Handler();
     private static final int REFRESH_SCREEN = 1;
-    String username,password,url;
-    String GET_URL,SENT_URL;
+    String username, password, url;
+    String GET_URL, SENT_URL;
     Button btnSubmit;
     Button btnRegister;
-    TextView txtUsername,txtPassword;
+    TextView txtUsername, txtPassword;
 
 
     @Override
@@ -47,11 +47,16 @@ public class LoginActivity extends Activity {
 
         txtUsername = findViewById(R.id.txtUsername);
         txtPassword = findViewById(R.id.txtPassword);
-        btnSubmit =findViewById(R.id.btnSubmit);
-        btnRegister =findViewById(R.id.btnRegister);
+        btnSubmit = findViewById(R.id.btnSubmit);
+        btnRegister = findViewById(R.id.btnRegister);
 
-
-
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -86,9 +91,9 @@ public class LoginActivity extends Activity {
 
     }
 
-    public void login(final String username, final String password){
+    public void login(final String username, final String password) {
 
-        url = "http://192.168.2.39/loginapp/get_post.php?name_admin="+username+"&password_admin="+password;
+        url = "http://192.168.2.39/loginapp/get_post.php?name_admin=" + username + "&password_admin=" + password;
         RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -112,7 +117,7 @@ public class LoginActivity extends Activity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.i("HiteshURLerror",""+error);
+                Log.i("HiteshURLerror", "" + error);
             }
         });
 
@@ -120,20 +125,4 @@ public class LoginActivity extends Activity {
 
 
     }
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-
-        txtUsername = findViewById(R.id.txtUsername);
-        txtPassword = findViewById(R.id.txtPassword);
-        btnSubmit =findViewById(R.id.btnSubmit);
-        btnRegister =findViewById(R.id.btnRegister);
-     btnSubmit.setOnClickListener(new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-
-        }
-    });
 }
