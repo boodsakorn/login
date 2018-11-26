@@ -93,7 +93,7 @@ public class LoginActivity extends Activity {
 
     public void login(final String username, final String password) {
 
-        url = "http://192.168.2.39/loginapp/get_post.php?name_admin=" + username + "&password_admin=" + password;
+        url = "http://192.168.88.186/loginapp/get_post.php?name_admin=" + username + "&password_admin=" + password;
         RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
